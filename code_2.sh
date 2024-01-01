@@ -48,74 +48,6 @@ done
 ## dada-denoising
 
 
-# qiime dada2 denoise-paired \
-#   --i-demultiplexed-seqs paired_end_2_qza/paired-end_sample1.qza\
-#    --p-trim-left-f 0 \
-#    --p-trim-left-r 0 \
-#   --p-trunc-len-f 245 \
-#   --p-trunc-len-r 245 \
-#   --p-n-threads 32 \
-#    --p-chimera-method consensus \
-#    --p-min-fold-parent-over-abundance 8 \
-#   --o-representative-sequences paired_end_2_qza/rep-seqs-dada2__sample_1.qza \
-#   --o-table paired_end_2_qza/table-dada2_sample_1.qza \
-#   --o-denoising-stats paired_end_2_qza/stats-dada2_sample_1.qza 
-
-
-# qiime dada2 denoise-paired \
-#   --i-demultiplexed-seqs paired_end_2_qza/paired-end_sample1.qza\
-#    --p-trim-left-f 0 \
-#    --p-trim-left-r 0 \
-#   --p-trunc-len-f 245 \
-#   --p-trunc-len-r 245 \
-#   --p-n-threads 32 \
-#    --p-chimera-method consensus \
-#    --p-min-fold-parent-over-abundance 8 \
-#   --o-representative-sequences paired_end_2_qza/rep-seqs-dada2_sample1.qza \
-#   --o-table paired_end_2_qza/table-dada2_sample1.qza \
-#   --o-denoising-stats paired_end_2_qza/stats-dada2_sample1.qza 
-
-#   qiime dada2 denoise-paired \
-#   --i-demultiplexed-seqs paired_end_2_qza/paired-end_sample1.qza\
-#    --p-trim-left-f 0 \
-#    --p-trim-left-r 0 \
-#   --p-trunc-len-f 260 \
-#   --p-trunc-len-r 260 \
-#   --p-n-threads 32 \
-#    --p-chimera-method consensus \
-#    --p-min-fold-parent-over-abundance 8 \
-#   --o-representative-sequences paired_end_2_qza/rep-seqs-dada2_sample2.qza \
-#   --o-table paired_end_2_qza/table-dada2_sample2.qza \
-#   --o-denoising-stats paired_end_2_qza/stats-dada2_sample2.qza 
-
-
-#    qiime dada2 denoise-paired \
-#   --i-demultiplexed-seqs paired_end_2_qza/paired-end_sample1.qza\
-#    --p-trim-left-f 0 \
-#    --p-trim-left-r 0 \
-#   --p-trunc-len-f 290 \
-#   --p-trunc-len-r 290 \
-#   --p-n-threads 32 \
-#    --p-chimera-method consensus \
-#    --p-min-fold-parent-over-abundance 8 \
-#   --o-representative-sequences paired_end_2_qza/rep-seqs-dada2_sample3.qza \
-#   --o-table paired_end_2_qza/table-dada2_sample3.qza \
-#   --o-denoising-stats paired_end_2_qza/stats-dada2_sample3.qza 
-
-
-#     qiime dada2 denoise-paired \
-#   --i-demultiplexed-seqs paired_end_2_qza/paired-end_sample1.qza\
-#    --p-trim-left-f 0 \
-#    --p-trim-left-r 0 \
-#   --p-trunc-len-f 0 \
-#   --p-trunc-len-r 0 \
-#   --p-n-threads 32 \
-#    --p-chimera-method consensus \
-#    --p-min-fold-parent-over-abundance 8 \
-#   --o-representative-sequences paired_end_2_qza/rep-seqs-dada2_sample2.qza \
-#   --o-table paired_end_2_qza/table-dada2_sample2.qza \
-#   --o-denoising-stats paired_end_2_qza/stats-dada2_sample2.qza 
-
 
 INPUT_DIR="paired_end_2_qza"
 
@@ -135,6 +67,7 @@ do
     --i-demultiplexed-seqs "$SAMPLE_FILE" \
     --p-trunc-len-f 0 \
     --p-trunc-len-r 0 \
+    --p-trim-left-f 0 \
     --p-trim-left-r 0 \
     --p-n-threads 32 \
     --p-chimera-method consensus \
@@ -170,28 +103,6 @@ do
   echo "Generated visualization for $SAMPLE_ID"
 done
 
-
-# qza to qzv
-
-# Define the path to the input directory
-INPUT_DIR="paired_end_2_qza"
-
-# Loop through the sample files
-for SAMPLE_FILE in "$INPUT_DIR"/rep-seqs-dada2_*.qza
-do
-  # Get the sample ID from the file name
-  SAMPLE_ID=$(basename "$SAMPLE_FILE" .qza | cut -d'_' -f3-)
-  
-  # Define the output visualization file path
-  OUTPUT_VISUALIZATION="$INPUT_DIR/rep-seqs-dada2_${SAMPLE_ID}.qzv"
-
-  # Run the qiime feature-table tabulate-seqs command
-  qiime feature-table tabulate-seqs \
-    --i-data "$SAMPLE_FILE" \
-    --o-visualization "$OUTPUT_VISUALIZATION"
-
-  echo "Generated visualization for $SAMPLE_ID"
-done
 
 
 
@@ -259,18 +170,6 @@ qiime feature-classifier extract-reads \
 # Silva 132 99% OTUs from 515F/806R region of sequences (MD5: a0925e86cda18829f84f03dab01ff589)
 
 ########
-
-
-
-
-
-
-
-
-
-##START from HERE
-
-
 
 
 
